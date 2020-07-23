@@ -23,7 +23,7 @@ const Statistics = ({ good, bad, neutral }) => {
           text={"Average"}
         />
         <Display
-          value={good / (good + neutral + bad) + " %"}
+          value={(good / (good + neutral + bad)) * 100 + " %"}
           text={"Positive"}
         />
       </>
