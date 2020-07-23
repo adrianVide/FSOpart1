@@ -1,9 +1,28 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
+const Statistics = (props) => {
+  return (
+    <>
+      <Display value={props.good} text={"Good"} />
+      <Display value={props.neutral} text={"Neutral"} />
+      <Display value={props.bad} text={"Bad"} />
+      <Display value={props.good + props.bad + props.neutral} text={"All"} />
+      <Display
+        value={(props.good - props.bad) / (props.good + props.neutral + props.bad)}
+        text={"Average"}
+      />
+      <Display
+        value={props.good / (props.good + props.neutral + props.bad) + " %"}
+        text={"Positive"}
+      />
+    </>
+  );
+};
+
 const Display = (props) => (
   <div>
-    {props.buttonText} {props.value}
+    {props.text} {props.value}
   </div>
 );
 
@@ -15,7 +34,7 @@ const App = () => {
   // save clicks of each button to own state
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0); 
+  const [bad, setBad] = useState(0);
 
   return (
     <div>
@@ -27,12 +46,9 @@ const App = () => {
       />
       <Button handleClick={() => setBad(bad + 1)} buttonText={"Bad"} />
       <h2>Statistics</h2>
-      <Display value={good} buttonText={"Good"} />
-      <Display value={neutral} buttonText={"Neutral"} />
-      <Display value={bad} buttonText={"Bad"} />
-      <Display value={good + bad + neutral} buttonText={"All"} />
-      <Display value={(good - bad) / (good + neutral + bad)} buttonText={"Average"} />
-      <Display value={(good) / (good + neutral + bad) + ' %'} buttonText={"Positive"} />
+      <Statistics good={good} neutral={neutral} bad={bad} />
+
+      
     </div>
   );
 };
