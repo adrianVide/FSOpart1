@@ -14,15 +14,15 @@ const Statistics = ({ good, bad, neutral }) => {
     return (
       <>
         <h2>Statistics</h2>
-        <Display value={good} text={"Good"} />
-        <Display value={neutral} text={"Neutral"} />
-        <Display value={bad} text={"Bad"} />
-        <Display value={good + bad + neutral} text={"All"} />
-        <Display
+        <Statistic value={good} text={"Good"} />
+        <Statistic value={neutral} text={"Neutral"} />
+        <Statistic value={bad} text={"Bad"} />
+        <Statistic value={good + bad + neutral} text={"All"} />
+        <Statistic
           value={(good - bad) / (good + neutral + bad)}
           text={"Average"}
         />
-        <Display
+        <Statistic
           value={(good / (good + neutral + bad)) * 100 + " %"}
           text={"Positive"}
         />
@@ -31,7 +31,7 @@ const Statistics = ({ good, bad, neutral }) => {
   }
 };
 
-const Display = (props) => (
+const Statistic = (props) => (
   <div>
     {props.text} {props.value}
   </div>
